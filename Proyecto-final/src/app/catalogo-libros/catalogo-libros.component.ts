@@ -56,7 +56,6 @@ export class CatalogoLibrosComponent implements OnInit {
     this.prestamo.idLibro = libros.id;
     this.prestamo.titulo = libros.nombre;
     this.prestamo.fechaRecogida= this.now;
-    console.log(this.prestamo)
     this.service.createPrestamo(this.prestamo)
       .subscribe(data => {
         Swal.fire({
