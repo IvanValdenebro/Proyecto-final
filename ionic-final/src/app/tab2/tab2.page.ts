@@ -20,7 +20,6 @@ export class Tab2Page {
     this.service.getLibro()
       .subscribe(data => {
         this.libros = data;
-        console.log(this.libros)
       })
 }
 logout(){
@@ -30,7 +29,6 @@ logout(){
 createPrestamo(libros: Libro) {
   localStorage.setItem("idLibro",libros.id.toString())
   libros.stock=false;
-  console.log(libros)
   this.service.updateLibro(libros)
   .subscribe(data => {
   })  
@@ -39,7 +37,6 @@ createPrestamo(libros: Libro) {
   this.prestamo.alquilado = true;
   this.prestamo.idLibro = libros.id;
   this.prestamo.titulo = libros.nombre;
-  console.log(this.prestamo)
   this.service.createPrestamo(this.prestamo)
     .subscribe(data => {
       Swal.fire({

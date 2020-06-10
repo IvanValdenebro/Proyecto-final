@@ -33,7 +33,6 @@ export class Tab3Page {
   devolver(prestamos:Prestamo){
     localStorage.setItem("idLibro",prestamos.idLibro.toString())
     localStorage.setItem("idPrestamo",prestamos.id.toString())
-    console.log(localStorage.getItem("idLibro"))
     let idLibro = localStorage.getItem("idLibro")
     let idPrestamo = localStorage.getItem("idPrestamo")
     this.service.getLibroId(+idLibro)
@@ -49,11 +48,9 @@ export class Tab3Page {
     .subscribe(data => {
       this.prestamo=data;
       this.prestamo.alquilado=false;
-      console.log("prestamo seleccionado"+data)
       this.service.updatePrestamo(this.prestamo)
       .subscribe(data => {
         this.prestamo=data;
-        console.log("prestamo updateado"+this.prestamo)
         this.ngOnInit();
         Swal.fire({
           icon: 'success',

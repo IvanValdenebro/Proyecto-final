@@ -29,10 +29,11 @@ export class LoginPage implements OnInit {
       }else{
         this.usuario=data;
         if(this.usuario.role==false){
-          localStorage.setItem("role","admin")
-          console.log(localStorage.getItem("role"))          
-          localStorage.setItem("usuarioId",id.toString())  
-          
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Esta aplicación es solo para admins'
+          })
           Swal.fire({
             icon: 'success',
             text: 'Sesión iniciada'
@@ -40,7 +41,6 @@ export class LoginPage implements OnInit {
           this.router.navigate(["/tabs"])
           }else{
             localStorage.setItem("role","usuario")
-            console.log(localStorage.getItem("role"))
             var id = this.usuario.id;            
             localStorage.setItem("usuarioId",id.toString())  
           Swal.fire({
