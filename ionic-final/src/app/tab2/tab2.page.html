@@ -1,0 +1,35 @@
+<html ng-app="ionicApp">
+
+  <ion-header [translucent]="true">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+    <ion-toolbar>
+      <ion-title>
+        <h4>Catálogo de libros</h4>
+      </ion-title>
+      <ion-button slot="end" size="small" class="button  button-assertive mr-3" color="light" type="button" (click)="logout()">
+        <ion-icon name="log-in-outline"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+
+    <ion-content>
+        <div class="row header">
+          <div class="col">Titulo</div>
+          <div class="col">Autor</div>
+          <div class="col">Genero</div>
+          <div class="col">Año</div>
+          <div class="col">Alquilar</div>
+        </div>
+        <div class="row" *ngFor="let libro of libros">
+          <div class="col">{{libro.nombre}}</div>
+          <div class="col">{{libro.autor}}</div>
+          <div class="col">{{libro.genero}}</div>
+          <div class="col">{{libro.fecha}}</div>
+          <div class="col"><button class="button" (click)="createPrestamo(libro)">Alquilar</button></div>
+        </div>
+    </ion-content>
+</html>
