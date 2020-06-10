@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+
+<h2 style="margin-left: 1.2%; padding-top: 2%;">Catálogo de libros</h2>
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Género</th>
+          <th scope="col">Subgénero</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Año de publicación</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let libro of libros | paginate: { itemsPerPage: 7, currentPage: p }">
+          <td>{{libro.nombre}}</td>
+          <td>{{libro.genero}}</td>
+          <td>{{libro.subgenero}}</td>
+          <td>{{libro.autor}}</td>
+          <td>{{libro.fecha}}</td>
+          <td>
+            <button *ngIf="role==='admin'" (click)="eliminar(libro)" class="btn btn-danger">Eliminar</button>
+            <button *ngIf="role==='admin'" (click)="editar(libro)" class="btn btn-warning">Editar</button>
+            <button *ngIf="role==='usuario'" (click)="createPrestamo(libro)" class="btn">Alquilar libro</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

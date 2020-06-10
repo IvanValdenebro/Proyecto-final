@@ -1,0 +1,9 @@
+.fondo{
+    background-image: url("../../assets/biblioteca-arus-1.jpg");
+    height: 92.4vh;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

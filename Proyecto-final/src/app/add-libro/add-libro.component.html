@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<!-- Default form contact -->
+<div class="container col-lg-8 col-md-8">
+<form class="text-center border border-light p-5">
+
+    <p class="h4 mb-4">Añadir libros</p>
+  
+    <label class="label" for="">Nombre</label>
+    <input  [(ngModel)]="libro.nombre"  type="text"  id="nombre" name="nombre" class="form-control mb-4" placeholder="Nombre">
+    <label class="label" for="">Género</label>
+    <input [(ngModel)]="libro.genero" name="genero" id="genero" class="form-control mb-4" placeholder="Género">
+    <label class="label" for="">Subgénero</label>
+    <input [(ngModel)]="libro.subgenero" name="subgenero" id="subgenero" class="form-control mb-4" placeholder="Subgénero">
+    <label class="label" for="">Autor</label>
+    <input [(ngModel)]="libro.autor" name="autor" id="autor" class="form-control mb-4" placeholder="Autor">
+    <label class="label" for="">Año</label>
+    <input [(ngModel)]="libro.fecha" name="fecha" id="fecha" class="form-control mb-4" placeholder="Año">
+  
+    
+    <button mdbBtn (click)="guardar()" color="info" block="true" type="submit">Send</button>
+  
+  </form>
+  <!-- Default form contact -->
+</div>

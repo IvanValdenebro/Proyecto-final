@@ -1,0 +1,153 @@
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">Biblioteca del Ivane</a>
+  
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+  
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/inicio">Inicio
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" href="/catalogo">Catálogo libros</a>
+        </li>
+        <li class="nav-item"  *ngIf="role==='usuario'">
+          <a class="nav-link" href="/devolucion">Devolución</a>
+        </li>
+  
+        <li class="nav-item" *ngIf="role==='admin'">
+          <a class="nav-link" href="/addLibro">Añadir libro</a>
+        </li>
+        <li class="nav-item" *ngIf="role==='admin'">
+          <a (click)="descargarPdf()" class="nav-link" >Informe de préstamos</a>
+        </li>
+  
+      </ul>
+      <!-- Links -->
+  
+      <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+      (click)="iniciarsesion.show()" mdbWavesEffect>Iniciar sesión
+    </button>
+    </div>
+    <!-- Collapsible content -->
+  
+  </nav>
+  <!--/.Navbar-->
+
+ 
+
+
+  <!--Inicio de sesión-->
+
+<div mdbModal #iniciarsesion="mdbModal" class="modal fade left" id="frameModalTop1" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+  <h4 class="modal-title w-100 font-weight-bold">Iniciar sesión</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="iniciarsesion.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body mx-3">
+  <div class="md-form mb-5">
+    <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+    <input [(ngModel)]="usuario.name" name="name" type="text" id="orangeForm-name" class="form-control" [formControl]="signupFormModalName"
+           mdbInput mdbValidate>
+    <label for="orangeForm-name">Nombre de usuario</label>
+    <mdb-error *ngIf="signupFormModalName.invalid && (signupFormModalName.dirty || signupFormModalName.touched)">
+      Nombre de usuario invalido
+    </mdb-error>
+    <mdb-success *ngIf="signupFormModalName.valid && (signupFormModalName.dirty || signupFormModalName.touched)">
+      Nombre de usuario invalido
+    </mdb-success>
+  </div>
+  <div class="md-form mb-5">
+    
+
+  <div class="md-form mb-4">
+    <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+    <input [(ngModel)]="usuario.password" name="password" type="password" id="orangeForm-pass" class="form-control" [formControl]="signupFormModalPassword"
+           mdbInput mdbValidate>
+    <label for="orangeForm-pass">Tu contraseña</label>
+    <mdb-error
+      *ngIf="signupFormModalPassword.invalid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
+      Contraseña invalida
+    </mdb-error>
+    <mdb-success
+      *ngIf="signupFormModalPassword.valid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
+      Contraseña invalida
+    </mdb-success>
+  </div>
+  <div>
+  <p>
+    ¿Aún no eres miembro?
+    <a (click)="crearsesion.show();" class="blue-text">Regístrate</a>
+  </p>
+</div>
+
+</div>
+<div class="modal-footer d-flex justify-content-center">
+  <button (click)="logear()" mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect>Iniciar sesión</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--Contraseña-->
+
+<div mdbModal #crearsesion="mdbModal" class="modal fade left" id="frameModalTop2" tabindex="0" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+  <h4 class="modal-title w-100 font-weight-bold">Regístrate</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="crearsesion.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body mx-3">
+  <form>
+  <div class="md-form mb-5">
+    <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+    <input [(ngModel)]="usuario.name" name="name" type="text" id="orangeForm-name" [formControl]="signupFormModalName" class="form-control" mdbInput mdbValidate >
+    <label  for="orangeForm-name">Tu nombre</label>
+    <mdb-error *ngIf="signupFormModalName.invalid && (signupFormModalName.dirty || signupFormModalName.touched)">
+      Input invalido
+    </mdb-error>
+    <mdb-success *ngIf="signupFormModalName.valid && (signupFormModalName.dirty || signupFormModalName.touched)">
+      Input valido
+    </mdb-success>
+  </div>
+  <div class="md-form mb-4">
+    <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+    <input [(ngModel)]="usuario.password" name="password" type="password" id="orangeForm-pass" [formControl]="signupFormModalPassword" class="form-control" mdbInput mdbValidate >
+    <label  for="orangeForm-pass">Tu contraseña</label>
+    <mdb-error
+      *ngIf="signupFormModalPassword.invalid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
+      Input invalido
+    </mdb-error>
+    <mdb-success
+      *ngIf="signupFormModalPassword.valid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
+      Input valido
+    </mdb-success>
+  </div>
+</form>
+</div>
+<div class="modal-footer d-flex justify-content-center">
+  <button (click)="guardar();" mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect>Crear cuenta</button>
+</div>
+</div>
+</div>
+</div>
