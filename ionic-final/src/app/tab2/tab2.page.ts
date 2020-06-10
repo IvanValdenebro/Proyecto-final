@@ -15,7 +15,6 @@ export class Tab2Page {
   prestamo: Prestamo = new Prestamo();
   role: string;
   constructor(private service: BackendService, private router: Router) {}
-
   ngOnInit(): void {
     this.service.getLibro()
       .subscribe(data => {
